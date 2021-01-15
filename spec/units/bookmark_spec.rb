@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 describe '.all' do
   it 'returns a list of bookmarks' do
     connection = PG.connect(dbname: 'bookmark_manager_test')
@@ -14,20 +16,3 @@ describe '.all' do
     expect(bookmarks).to include('http://www.google.com')
   end
 end
-
-
-# require 'bookmark'
-
-# describe Bookmark do
-#  describe '.all' do
-#    it 'returns all bookmarks' do
-#      bookmarks = Bookmark.all
-      # I cann delete this as I have a DB"
-      # expect(bookmarks).to include("http://www.makersacademy.com")
-      # expect(bookmarks).to include("http://www.google.com")
-      # expect(bookmarks).to include("http://www.twitter.com")
-      # expect(page).to have_content "http://amazon.com"
-      # expect(bookmarks).to include("http://www.destroyallsoftware.com")
-#    end
-#  end
-# end
