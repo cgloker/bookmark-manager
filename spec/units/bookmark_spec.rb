@@ -1,14 +1,33 @@
-require 'bookmark'
+describe '.all' do
+  it 'returns a list of bookmarks' do
+    connection = PG.connect(dbname: 'bookmark_manager_test')
 
-describe Bookmark do
-  describe '.all' do
-    it 'returns all bookmarks' do
-      bookmarks = Bookmark.all
-# I cann delete this as I have a DB"
-#      expect(bookmarks).to include("http://www.makersacademy.com")
-#      expect(bookmarks).to include("http://www.google.com")
-#      expect(bookmarks).to include("http://www.twitter.com")
-#      expect(bookmarks).to include("http://www.destroyallsoftware.com")
-    end
+    # Add the test data
+    connection.exec("INSERT INTO bookmarks (url) VALUES ('http://www.makersacademy.com');")
+    connection.exec("INSERT INTO bookmarks (url) VALUES('http://www.destroyallsoftware.com');")
+    connection.exec("INSERT INTO bookmarks (url) VALUES('http://www.google.com');")
+
+    bookmarks = Bookmark.all
+
+    expect(bookmarks).to include('http://www.makersacademy.com')
+    expect(bookmarks).to include('http://www.destroyallsoftware.com')
+    expect(bookmarks).to include('http://www.google.com')
   end
 end
+
+
+# require 'bookmark'
+
+# describe Bookmark do
+#  describe '.all' do
+#    it 'returns all bookmarks' do
+#      bookmarks = Bookmark.all
+      # I cann delete this as I have a DB"
+      # expect(bookmarks).to include("http://www.makersacademy.com")
+      # expect(bookmarks).to include("http://www.google.com")
+      # expect(bookmarks).to include("http://www.twitter.com")
+      # expect(page).to have_content "http://amazon.com"
+      # expect(bookmarks).to include("http://www.destroyallsoftware.com")
+#    end
+#  end
+# end
